@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-10 xyz-in fade-down" xyz="fade down duration-10 ease-out">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+            <span class="material-symbols-outlined">local_hospital</span> Médicos
+        </h2>
+        <a href="{{ url_for('nuevo_medico') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+            <span class="material-symbols-outlined align-middle mr-1">add</span> Agregar Médico
+        </a>
+    </div>
+
+    <div class="overflow-x-auto shadow border border-gray-200 rounded-lg">
+        <table class="min-w-full text-sm text-left text-gray-700 bg-white">
+            <thead class="bg-blue-50 text-blue-800 font-semibold">
+                <tr>
+                    <th class="px-4 py-3">ID</th>
+                    <th class="px-4 py-3">Nombre</th>
+                    <th class="px-4 py-3">Especialidad</th>
+                    <th class="px-4 py-3 text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                {% for medico in medicos %}
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="px-4 py-2">{{ medico.id_medico }}</td>
+                    <td class="px-4 py-2">{{ medico.nombre }}</td>
+                    <td class="px-4 py-2">{{ medico.especialidad.nombre }}</td>
+                    <td class="px-4 py-2 text-center">
+                        <a href="{{ url_for('editar_medico', id=medico.id_medico) }}"
+                           class="inline-flex items-center px-3 py-1 text-sm text-yellow-700 bg-yellow-100 hover:bg-yellow-200 rounded-md transition">
+                            <span class="material-symbols-outlined mr-1 text-base">edit</span> Editar
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

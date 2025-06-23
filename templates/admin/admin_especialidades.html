@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 py-10 xyz-in fade-down" xyz="fade down duration-10 ease-out">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+            <span class="material-symbols-outlined">psychology_alt</span> Especialidades
+        </h2>
+        <a href="{{ url_for('nueva_especialidad') }}" 
+           class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition flex items-center gap-2">
+            <span class="material-symbols-outlined">add</span> Agregar Nueva
+        </a>
+    </div>
+
+    <div class="overflow-x-auto shadow border border-gray-200 rounded-lg">
+        <table class="min-w-full text-sm text-left text-gray-700 bg-white">
+            <thead class="bg-blue-50 text-blue-800 font-semibold">
+                <tr>
+                    <th class="px-4 py-3">ID</th>
+                    <th class="px-4 py-3">Nombre</th>
+                    <th class="px-4 py-3 text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                {% for especialidad in especialidades %}
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="px-4 py-2">{{ especialidad.id_especialidad }}</td>
+                    <td class="px-4 py-2">{{ especialidad.nombre }}</td>
+                    <td class="px-4 py-2 text-center flex flex-wrap justify-center gap-2">
+                        <a href="{{ url_for('editar_especialidad', id=especialidad.id_especialidad) }}"
+                           class="inline-flex items-center gap-1 px-3 py-1 text-sm text-yellow-700 bg-yellow-100 hover:bg-yellow-200 rounded-md transition">
+                            <span class="material-symbols-outlined text-base">edit</span> Editar
+                        </a>
+                        <a href="{{ url_for('eliminar_especialidad', id=especialidad.id_especialidad) }}"
+                           onclick="return confirm('¿Eliminar esta especialidad?')"
+                           class="inline-flex items-center gap-1 px-3 py-1 text-sm text-red-700 bg-red-100 hover:bg-red-200 rounded-md transition">
+                            <span class="material-symbols-outlined text-base">delete</span> Eliminar
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

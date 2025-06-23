@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 py-10 text-center xyz-in fade-down" xyz="fade down duration-10 ease-out">
+    <h2 class="text-3xl font-bold text-blue-600 mb-3 flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-4xl">clinical_notes</span> Panel del Médico
+    </h2>
+    <p class="text-blue-700 text-lg mb-8">Bienvenido, Dr./Dra. <strong>{{ session.usuario }}</strong>.
+     {% if   session.usuario %}, Rol es: <strong>{{ session.rol }}</strong>{% endif %}.
+    </p>
+    <hr class="mb-8">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="{{ url_for('ver_pacientes') }}"
+           class="transform hover:scale-105 transition duration-300 bg-white border-2 border-blue-300 text-blue-700 rounded-xl p-6 shadow-md xyz-in fade-up"
+           xyz="fade up stagger delay-1">
+            <span class="material-symbols-outlined text-4xl mb-2">groups</span>
+            <div class="text-lg font-semibold">Ver Pacientes</div>
+        </a>
+
+        <a href="{{ url_for('ver_historiales') }}"
+           class="transform hover:scale-105 transition duration-300 bg-white border-2 border-blue-300 text-blue-700 rounded-xl p-6 shadow-md xyz-in fade-up"
+           xyz="fade up stagger delay-2">
+            <span class="material-symbols-outlined text-4xl mb-2">folder_open</span>
+            <div class="text-lg font-semibold">Historiales Clínicos</div>
+        </a>
+
+        <a href="{{ url_for('nuevo_historial') }}"
+           class="transform hover:scale-105 transition duration-300 bg-white border-2 border-blue-300 text-blue-700 rounded-xl p-6 shadow-md xyz-in fade-up"
+           xyz="fade up stagger delay-3">
+            <span class="material-symbols-outlined text-4xl mb-2">note_add</span>
+            <div class="text-lg font-semibold">Nuevo Historial</div>
+        </a>
+
+        <a href="{{ url_for('medico_citas') }}"
+       class="transform hover:scale-105 transition duration-300 bg-white border-2 border-blue-300 text-blue-700 rounded-xl p-6 shadow-md xyz-in fade-up"
+       xyz="fade up stagger delay-4">
+        <span class="material-symbols-outlined text-4xl mb-2">calendar_month</span>
+        <div class="text-lg font-semibold">Ver Citas</div>
+    </a>
+    </div>
+</div>
+{% endblock %}

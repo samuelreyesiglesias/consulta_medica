@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-10 xyz-in fade-down" xyz="fade down duration-10 ease-out">
+
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+            <span class="material-symbols-outlined">groups</span> Pacientes Registrados
+        </h2>
+        <a href="{{ url_for('recepcionista_nuevo_paciente') }}"
+           class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition flex items-center gap-2">
+            <span class="material-symbols-outlined">person_add</span> Nuevo Paciente
+        </a>
+    </div>
+
+    {% if pacientes %}
+    <div class="overflow-x-auto shadow border border-gray-200 rounded-lg">
+        <table class="min-w-full text-sm text-left text-gray-700 bg-white">
+            <thead class="bg-blue-50 text-blue-800 font-semibold">
+                <tr>
+                    <th class="px-4 py-3">ID</th>
+                    <th class="px-4 py-3">Nombre</th>
+                    <th class="px-4 py-3">Fecha Nac.</th>
+                    <th class="px-4 py-3">Género</th>
+                    <th class="px-4 py-3">Teléfono</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                {% for paciente in pacientes %}
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="px-4 py-2">{{ paciente.id_paciente }}</td>
+                    <td class="px-4 py-2">{{ paciente.nombre }}</td>
+                    <td class="px-4 py-2">{{ paciente.fecha_nacimiento.strftime('%d/%m/%Y') if paciente.fecha_nacimiento else '—' }}</td>
+                    <td class="px-4 py-2">{{ paciente.genero }}</td>
+                    <td class="px-4 py-2">{{ paciente.telefono or '—' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="text-center text-gray-500 mt-6">
+        <span class="material-symbols-outlined text-5xl mb-2">sentiment_dissatisfied</span>
+        <p class="text-lg">No hay pacientes registrados.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

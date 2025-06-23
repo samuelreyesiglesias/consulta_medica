@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Nuevo Médico</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Especialidad</label>
+            <select name="especialidad" class="form-select" required>
+                {% for esp in especialidades %}
+                <option value="{{ esp.id_especialidad }}">{{ esp.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="{{ url_for('admin_medicos') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

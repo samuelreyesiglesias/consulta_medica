@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Sistema de Consultas Médicas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AnimXYZ -->
+    <link href="https://cdn.jsdelivr.net/npm/@animxyz/core" rel="stylesheet">
+
+    <!-- Google Material Symbols (outline style) -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <style>
+    .material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    font-size: 2.5rem;
+    } 
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+  vertical-align: middle;
+} 
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+
+    
+
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white shadow">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="{{url_for('home')}}" class="text-xl font-semibold tracking-wide">Sistema Médico</a>
+            {% if session.usuario %}
+            <div class="flex items-center space-x-4">
+                <span class="text-sm">Hola, {{ session.usuario }}</span>
+                <a href="{{ url_for('logout') }}" class="px-3 py-1 bg-white text-blue-600 rounded-md text-sm hover:bg-gray-100 transition">Cerrar Sesión</a>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="py-6 px-4">
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>

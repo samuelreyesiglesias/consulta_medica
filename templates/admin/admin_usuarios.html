@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-10 xyz-in fade-down" xyz="fade down duration-10 ease-out">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-blue-600">👤 Usuarios del Sistema</h2>
+        <a href="{{ url_for('nuevo_usuario') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+            <span class="material-symbols-outlined align-middle text-white mr-1">person_add</span> Nuevo Usuario
+        </a>
+    </div>
+
+    <div class="overflow-x-auto shadow border border-gray-200 rounded-lg">
+        <table class="min-w-full text-sm text-left text-gray-700 bg-white">
+            <thead class="bg-blue-50 text-blue-800 font-semibold">
+                <tr>
+                    <th class="px-4 py-3">ID</th>
+                    <th class="px-4 py-3">Usuario</th>
+                    <th class="px-4 py-3">Rol</th>
+                    <th class="px-4 py-3 text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                {% for usuario in usuarios %}
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="px-4 py-2">{{ usuario.id_usuario }}</td>
+                    <td class="px-4 py-2">{{ usuario.nombre_usuario }}</td>
+                    <td class="px-4 py-2 capitalize">{{ usuario.rol }}</td>
+                    <td class="px-4 py-2 text-center">
+                        <a href="{{ url_for('editar_usuario', id=usuario.id_usuario) }}"
+                           class="inline-flex items-center px-3 py-1 text-sm text-yellow-700 bg-yellow-100 hover:bg-yellow-200 rounded-md transition">
+                            <span class="material-symbols-outlined mr-1 text-base">edit</span> Editar
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

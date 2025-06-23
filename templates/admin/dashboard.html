@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-10 text-center xyz-in fade-down" xyz="fade down duration-10 ease-out">
+    <h2 class="text-3xl font-bold text-blue-600 mb-3">
+        <span class="material-symbols-outlined align-middle">dashboard</span> Panel de Administración
+    </h2>
+    <p class="text-blue-700 text-lg mb-8"  >
+        Bienvenido{% if session.usuario %}, <strong>{{ session.usuario }}</strong>{% endif %}.
+
+        {% if   session.usuario %}, Rol es: <strong>{{ session.rol }}</strong>{% endif %}.
+    </p>
+ 
+    <img src="{{ url_for('static', filename='img/admin_dashboard.gif') }}" 
+         alt="Panel de Administración" 
+         class="mx-auto mb-8 w-64 h-64 object-contain xyz-in fade-up" xyz="fade up duration-10 ease-out">
+
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="{{ url_for('admin_usuarios') }}" 
+           class="transform hover:scale-105 transition duration-300 bg-white border-2 border-blue-300 text-blue-700 rounded-xl p-6 shadow-lg xyz-in fade-up" xyz="fade up stagger delay-1">
+            <span class="material-symbols-outlined mb-2 block">group</span>
+            <div class="text-lg font-semibold">Gestionar Usuarios</div>
+        </a>
+
+        <a href="{{ url_for('admin_medicos') }}" 
+           class="transform hover:scale-105 transition duration-300 bg-white border-2 border-blue-300 text-blue-700 rounded-xl p-6 shadow-lg xyz-in fade-up" xyz="fade up stagger delay-2">
+            <span class="material-symbols-outlined mb-2 block">medical_services</span>
+            <div class="text-lg font-semibold">Gestionar Médicos</div>
+        </a>
+
+        <a href="{{ url_for('admin_especialidades') }}" 
+           class="transform hover:scale-105 transition duration-300 bg-white border-2 border-blue-300 text-blue-700 rounded-xl p-6 shadow-lg xyz-in fade-up" xyz="fade up stagger delay-3">
+            <span class="material-symbols-outlined mb-2 block">psychology_alt</span>
+            <div class="text-lg font-semibold">Especialidades</div>
+        </a>
+    </div>
+</div>
+{% endblock %}
